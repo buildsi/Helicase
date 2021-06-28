@@ -2,9 +2,9 @@
 Helicase is a Library for Unravelling and Parsing Git Histories
 
 ## Usage
-##### Without Checking Out The Repository
 To use Helicase create a class in Python which inherits from the Helicase class. From there you can define your custom `analyze()` function and then call the `traverse()` method when you are ready to iterate through the commit history.
 
+##### Without Checking Out The Repository
 ```python
 from helicase import Helicase
 from datetime import *
