@@ -19,6 +19,6 @@ class Helicase:
                 repo.git.checkout(commit.hash)
             if printTrial:
                 i += 1
-                print(f"Analyzing Commit [{i}/{count}]")
+                print(f"Analyzing Commit [{i}/{count}]", flush=True)
             self.analyze(commit)
     
