@@ -6,7 +6,7 @@ class Helicase:
     def analyze(self, commit):
         return
 
-    def traverse(self, path:str, since:datetime=None, to:datetime=None, checkout:bool=False, printTrial:bool=False):
+    def traverse(self, path:str, since:datetime=None, from_commit:str=None, to:datetime=None, to_commit:str=None, checkout:bool=False, printTrial:bool=False):
         repo = Repo(path)
 
         if printTrial:
@@ -14,7 +14,7 @@ class Helicase:
             for commit in Repository(path, since=since, to=to).traverse_commits():
                 count += 1
             i = 0
-        for commit in Repository(path, since=since, to=to).traverse_commits():
+        for commit in Repository(path, since=since, from_commit=from_commit, to=to, to_commit=to_commit).traverse_commits():
             if checkout:
                 repo.git.checkout(commit.hash)
             if printTrial:
