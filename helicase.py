@@ -11,7 +11,7 @@ class Helicase:
 
         if printTrial:
             count = 0
-            for commit in Repository(path, since=since, to=to).traverse_commits():
+            for commit in Repository(path, since=since, from_commit=from_commit, to=to, to_commit=to_commit).traverse_commits():
                 count += 1
             i = 0
         for commit in Repository(path, since=since, from_commit=from_commit, to=to, to_commit=to_commit).traverse_commits():

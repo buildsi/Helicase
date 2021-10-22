@@ -10,4 +10,4 @@ dt = datetime(2021, 6, 18)
 now = datetime.now()
 
 pc = PrintCommits()
-pc.traverse("../../Spack/spack", since=dt, to=now)
+pc.traverse("~/Spack/spack", since=dt, to=now)
