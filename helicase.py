@@ -11,10 +11,10 @@ class Helicase:
 
         if printTrial:
             count = 0
-            for commit in Repository(path, since=since, from_commit=from_commit, to=to, to_commit=to_commit).traverse_commits():
+            for commit in Repository(path, since=since, from_commit=from_commit, to=to, to_commit=to_commit, only_in_branch=repo.active_branch.name, only_no_merge=True).traverse_commits():
                 count += 1
             i = 0
-        for commit in Repository(path, since=since, from_commit=from_commit, to=to, to_commit=to_commit).traverse_commits():
+        for commit in Repository(path, since=since, from_commit=from_commit, to=to, to_commit=to_commit, only_in_branch=repo.active_branch.name, only_no_merge=True).traverse_commits():
             if checkout:
                 repo.git.checkout(commit.hash)
             if printTrial:
