@@ -18,7 +18,7 @@ class Helicase:
             # If the commit exists in more branches than just the main branch that very
             # likely means that it was committed in a separate branch and merged in later
             # which is not what we want to analyze.
-            if repo.active_branch.name not in commit.branches or len(commit.branches) > 1:
+            if len(commit.branches) > 1:
                 continue
             if checkout:
                 repo.git.checkout(commit.hash)
