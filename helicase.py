@@ -54,7 +54,7 @@ class Commit:
 
     def modified_files(self, length=sys.maxsize):
         result = []
-        output = self.repo.git("diff", "--name-status", f"{self.hash}^1...{self.hash}")
+        output = self.repo.git("diff", "--name-status", f"{self.hash}~1...{self.hash}")
         for i, line in enumerate(output):
             if i >= length:
                 break
