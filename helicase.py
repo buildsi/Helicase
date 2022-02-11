@@ -39,14 +39,14 @@ class Repo:
         for i, line in enumerate(output):
             if i >= length:
                 break
-            commit, author_date, commit_date = re.split(r"\s+", line)
-            yield Commit(commit, dateutil.parser.parse(author_date), dateutil.parser.parse(commit_date), self)
+            commit, author_date, committer_date = re.split(r"\s+", line)
+            yield Commit(commit, dateutil.parser.parse(author_date), dateutil.parser.parse(committer_date), self)
 
 @dataclass
 class Commit:
     hash: str
     author_date: datetime
-    commit_date: datetime
+    committer_date: datetime
     repo: Repo
 
     def modified_files(self, length=sys.maxsize):
