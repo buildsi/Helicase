@@ -43,7 +43,8 @@ class Repo:
             commit, author_date, committer_date = re.split(r"\s+", line)
             result.append(Commit(commit, dateutil.parser.parse(author_date), dateutil.parser.parse(committer_date), self))
         
-        return result.reverse()
+        result.reverse()
+        return result
 
 @dataclass
 class Commit:
