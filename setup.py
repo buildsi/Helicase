@@ -9,10 +9,6 @@ setup(
     license = "MIT",
     keywords = "helicase git history",
     url = "https://github.com/buildsi/helicase",
-    install_requires=[
-          'gitpython',
-          'pydriller',
-      ],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Topic :: Utilities",
