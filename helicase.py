@@ -35,12 +35,15 @@ class Repo:
     def linear_history(self, from_commit, to_commit, length=sys.maxsize):
         """Yield tuples of (commit, date) on the current branch, from newest to
         oldest.  Date used is commit date, because it is monotonic."""
+        result = []
         output = self.git("log", "--first-parent", "--no-merges", "--format=%H %aI %cI", f"{from_commit}...{to_commit}")
         for i, line in enumerate(output):
             if i >= length:
                 break
             commit, author_date, committer_date = re.split(r"\s+", line)
-            yield Commit(commit, dateutil.parser.parse(author_date), dateutil.parser.parse(committer_date), self)
+            result.append(Commit(commit, dateutil.parser.parse(author_date), dateutil.parser.parse(committer_date), self))
+        
+        return result.reverse()
 
 @dataclass
 class Commit:
