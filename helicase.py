@@ -4,6 +4,7 @@ import re
 import sys
 import os
 import contextlib
+import dateutil.parser
 from dataclasses import dataclass
 
 @contextlib.contextmanager
@@ -39,7 +40,7 @@ class Repo:
             if i >= length:
                 break
             commit, author_date, commit_date = re.split(r"\s+", line)
-            yield Commit(commit, author_date, commit_date, self)
+            yield Commit(commit, dateutil.parser.parse(author_date), dateutil.parser.parse(commit_date), self)
 
 @dataclass
 class Commit:

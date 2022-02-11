@@ -9,6 +9,9 @@ setup(
     license = "MIT",
     keywords = "helicase git history",
     url = "https://github.com/buildsi/helicase",
+    install_requires=[
+          'python-dateutil',
+      ],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Topic :: Utilities",
