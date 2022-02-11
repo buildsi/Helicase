@@ -81,7 +81,7 @@ class Helicase:
 
     def traverse(self, path:str, since:datetime=None, from_commit:str=None, to:datetime=None, to_commit:str=None, checkout:bool=False, printTrial:bool=False):
         repo = Repo(path)
-        commits = list(repo.linear_history(from_commit=from_commit, to_commit=to_commit))
+        commits = repo.linear_history(from_commit=from_commit, to_commit=to_commit)
         count = len(commits)
         i = 0
 
