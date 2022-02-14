@@ -33,8 +33,6 @@ class Repo:
             return output
 
     def linear_history(self, from_commit, to_commit, length=sys.maxsize):
-        """Yield tuples of (commit, date) on the current branch, from newest to
-        oldest.  Date used is commit date, because it is monotonic."""
         result = []
         output = self.git("log", "--first-parent", "--no-merges", "--format=%H %aI %cI", f"{from_commit}...{to_commit}")
         for i, line in enumerate(output):
@@ -42,7 +40,7 @@ class Repo:
                 break
             commit, author_date, committer_date = re.split(r"\s+", line)
             result.append(Commit(commit, dateutil.parser.parse(author_date), dateutil.parser.parse(committer_date), self))
-        
+
         result.reverse()
         return result
 
@@ -55,7 +53,7 @@ class Commit:
 
     def modified_files(self, length=sys.maxsize):
         result = []
-        output = self.repo.git("diff", "--name-status", f"{self.hash}~1...{self.hash}")
+        output = self.repo.git("diff", "--name-status", "--no-renames", f"{self.hash}~1...{self.hash}")
         for i, line in enumerate(output):
             if i >= length:
                 break
@@ -74,7 +72,7 @@ class File:
 
     def __str__(self) -> str:
         return f"{self.change_type}\t{self.path}"
-        
+
 
 class Helicase:
     def analyze(self, commit):
